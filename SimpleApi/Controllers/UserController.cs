@@ -16,8 +16,14 @@ namespace SimpleApi.Controllers
             _repository = new Repository<User, Guid>();
         }
 
+        [HttpPost]
+        public ActionResult Add(User user)
+        {
+            return Ok(_repository.Add(user));
+        }
+
         [HttpGet]
-        public ActionResult<IEnumerable<User>> GetAll()
+        public ActionResult GetAll()
         {
             var result = _repository.GetAll();
 
@@ -27,14 +33,8 @@ namespace SimpleApi.Controllers
             return NotFound();
         }
 
-        [HttpPost]
-        public ActionResult<User> Add(User user)
-        {
-            return Ok(_repository.Add(user));
-        }
-
         [HttpGet("{id}")]
-        public ActionResult<User> GetById(Guid ID)
+        public ActionResult GetById(Guid ID)
         {
             var result = _repository.Get(ID);
 
