@@ -12,6 +12,12 @@
 
         }
 
+        public User(Guid id, string name, string email) : this(id)
+        {
+            Name = name;
+            Email = email;
+        }
+
         public string Name { get; set; } = default!;
         public string Email { get; set; } = default!;
     }
