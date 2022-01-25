@@ -9,34 +9,23 @@ namespace Api.Repository.Repositories
 
         public T Add(T entity)
         {
-            _entities
-                .Add(entity);
+            _entities.Add(entity);
 
             return entity;
         }
 
         public IEnumerable<T> Add(IEnumerable<T> entities)
         {
-            _entities
-                .AddRange(entities);
+            _entities.AddRange(entities);
 
             return entities;
         }
 
-        public T? Get(ID ID) => _entities
-            .SingleOrDefault(e => e.ID != null && e.ID.Equals(ID));
+        public T? Get(ID ID) => _entities.SingleOrDefault(e => e.ID != null && e.ID.Equals(ID));
 
-        public IEnumerable<T> Get(Func<T, bool> predicate) => _entities
-            .Where(e => predicate(e));
+        public IEnumerable<T> Get(Func<T, bool> predicate) => _entities.Where(e => predicate(e));
 
-        public IEnumerable<T> GetAll(bool onlyActive = true)
-        {
-            if (onlyActive)
-                return _entities
-                    .Where(e => e.IsActive);
-
-            return _entities;
-        }
+        public IEnumerable<T> GetAll(bool onlyActive = true) => onlyActive ? _entities.Where(e => e.IsActive) : _entities;
 
         public int Remove(ID ID)
         {
@@ -44,11 +33,9 @@ namespace Api.Repository.Repositories
 
             if (entity is not null)
             {
-                var index = _entities
-                    .IndexOf(entity);
+                var index = _entities.IndexOf(entity);
 
-                _entities[index]
-                    .IsActive = false;
+                _entities[index].IsActive = false;
 
                 return 1;
             }
