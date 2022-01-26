@@ -1,6 +1,5 @@
 ﻿using Api.Domain.Models;
 using Api.Repository.Interfaces;
-using Api.Repository.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SimpleApi.Controllers
@@ -9,11 +8,11 @@ namespace SimpleApi.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private IRepository<User, Guid> _repository;
+        private readonly IRepository<User, Guid> _repository;
 
-        public UserController()
+        public UserController(IRepository<User, Guid> repository)
         {
-            _repository = new Repository<User, Guid>();
+            _repository = repository;
         }
 
         [HttpPost]
