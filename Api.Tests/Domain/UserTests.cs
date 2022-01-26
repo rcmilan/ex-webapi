@@ -1,5 +1,4 @@
 ﻿using Api.Domain.Models;
-using NUnit.Framework;
 using System;
 
 namespace Api.Tests.Domain

@@ -1,9 +1,5 @@
 ﻿using Api.Domain.Models;
-using Newtonsoft.Json;
-using NUnit.Framework;
 using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace Api.Tests.Api
@@ -18,7 +14,7 @@ namespace Api.Tests.Api
             var client = application.CreateClient();
 
             var user = new User(System.Guid.NewGuid(), "username", "user@email.com");
-            var byteContent = WebAppFactory.BuildContent(user);
+            var byteContent = Helpers.BuildContent(user);
 
             // Act
             var response = await client.PostAsync("/api/user", byteContent);
@@ -26,6 +22,5 @@ namespace Api.Tests.Api
             // Assert
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
-
     }
 }

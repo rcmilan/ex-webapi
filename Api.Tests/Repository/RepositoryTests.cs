@@ -1,7 +1,6 @@
 ﻿using Api.Domain.Models;
 using Api.Repository.Interfaces;
 using Api.Repository.Repositories;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
