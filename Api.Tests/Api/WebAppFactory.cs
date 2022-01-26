@@ -5,7 +5,8 @@ namespace Api.Tests.Api
 {
     internal class WebAppFactory : WebApplicationFactory<Program>
     {
-        public readonly string _environment;
+        private readonly string _environment;
+
         public WebAppFactory(string environment = "Development")
         {
             _environment = environment;
