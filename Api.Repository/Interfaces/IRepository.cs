@@ -2,20 +2,20 @@
 
 namespace Api.Repository.Interfaces
 {
-    public interface IRepository<T, ID> where T : BaseModel<ID>
+    public interface IRepository<TEntity, TID> where TEntity : BaseModel<TID>
     {
-        T Add(T entity);
+        TEntity Add(TEntity entity);
 
-        IEnumerable<T> Add(IEnumerable<T> entities);
+        IEnumerable<TEntity> Add(IEnumerable<TEntity> entities);
 
-        T? Get(ID ID);
+        TEntity? Get(TID ID);
 
-        IEnumerable<T> Get(Func<T, bool> predicate);
+        IEnumerable<TEntity> Get(Func<TEntity, bool> predicate);
 
-        IEnumerable<T> GetAll(bool onlyActive = true);
+        IEnumerable<TEntity> GetAll(bool onlyActive = true);
 
-        int Remove(ID ID);
+        int Remove(TID ID);
 
-        int Remove(Func<T, bool> predicate);
+        int Remove(Func<TEntity, bool> predicate);
     }
 }

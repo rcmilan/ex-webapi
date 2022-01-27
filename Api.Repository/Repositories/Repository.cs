@@ -3,31 +3,31 @@ using Api.Repository.Interfaces;
 
 namespace Api.Repository.Repositories
 {
-    public sealed class Repository<T, ID> : IRepository<T, ID> where T : BaseModel<ID>
+    public sealed class Repository<TEntity, TID> : IRepository<TEntity, TID> where TEntity : BaseModel<TID>
     {
-        private static readonly List<T> _entities = new();
+        private static readonly List<TEntity> _entities = new();
 
-        public T Add(T entity)
+        public TEntity Add(TEntity entity)
         {
             _entities.Add(entity);
 
             return entity;
         }
 
-        public IEnumerable<T> Add(IEnumerable<T> entities)
+        public IEnumerable<TEntity> Add(IEnumerable<TEntity> entities)
         {
             _entities.AddRange(entities);
 
             return entities;
         }
 
-        public T? Get(ID ID) => _entities.SingleOrDefault(e => e.ID != null && e.ID.Equals(ID));
+        public TEntity? Get(TID ID) => _entities.SingleOrDefault(e => e.ID != null && e.ID.Equals(ID));
 
-        public IEnumerable<T> Get(Func<T, bool> predicate) => _entities.Where(e => predicate(e));
+        public IEnumerable<TEntity> Get(Func<TEntity, bool> predicate) => _entities.Where(e => predicate(e));
 
-        public IEnumerable<T> GetAll(bool onlyActive = true) => onlyActive ? _entities.Where(e => e.IsActive) : _entities;
+        public IEnumerable<TEntity> GetAll(bool onlyActive = true) => onlyActive ? _entities.Where(e => e.IsActive) : _entities;
 
-        public int Remove(ID ID)
+        public int Remove(TID ID)
         {
             var entity = Get(ID);
 
@@ -43,7 +43,7 @@ namespace Api.Repository.Repositories
             return 0;
         }
 
-        public int Remove(Func<T, bool> predicate)
+        public int Remove(Func<TEntity, bool> predicate)
         {
             var entities = Get(predicate);
 
