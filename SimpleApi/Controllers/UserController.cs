@@ -32,7 +32,7 @@ namespace SimpleApi.Controllers
             return NotFound();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{ID}")]
         public ActionResult GetById(Guid ID)
         {
             var result = _repository.Get(ID);
@@ -40,7 +40,7 @@ namespace SimpleApi.Controllers
             if (result is not null)
                 return Ok(result);
 
-            return NotFound();
+            return NotFound(ID);
         }
     }
 }
