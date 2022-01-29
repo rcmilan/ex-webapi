@@ -5,7 +5,12 @@ using Api.Repository.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+// inversão de controle
 builder.Services.AddScoped<IRepository<User, Guid>, Repository<User, Guid>>();
+
+builder.Services.AddScoped<IRepository<Ninja, int>, NinjaRepository>();
+
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

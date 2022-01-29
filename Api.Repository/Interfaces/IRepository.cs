@@ -2,6 +2,7 @@
 
 namespace Api.Repository.Interfaces
 {
+    // generics
     public interface IRepository<TEntity, TID> where TEntity : BaseModel<TID>
     {
         TEntity Add(TEntity entity);

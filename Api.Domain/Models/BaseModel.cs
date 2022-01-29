@@ -1,5 +1,6 @@
 ﻿namespace Api.Domain.Models
 {
+    // generics <T>
     public abstract class BaseModel<TID>
     {
         public BaseModel()
@@ -14,6 +15,8 @@
         }
 
         public TID ID { get; set; } = default!;
+
+
         public DateTime CreatedAt { get; private set; }
         public bool IsActive { get; set; }
     }
