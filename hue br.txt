@@ -1,0 +1,38 @@
+
+========= camada Domain ===========
+Entidade
+    BaseModel
+    Ninja
+
+                /\
+======== camada Repository ========
+
+Interface (interfaces não podem ser instanciadas)
+    IRepository
+Class (implementa a interface)
+    Repository (lógica de interação ao banco)
+
+                /\
+========= camada Api =============
+Controller
+    Ninja Controller
+        Dependencias: IRepository<Ninja, int> => instancia Repository<Ninja, int>
+
+
+
+
+
+
+
+
+
+IoC (inversão de controle)
+    IRepository<Ninja, Int> ==> Repository<Ninja, int>
+
+
+SOLID
+I: segregação de interface
+
+    
+Controllers -> Repository -> Domain
+
